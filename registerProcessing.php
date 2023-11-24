@@ -33,11 +33,10 @@ $stmt->execute();
 
 if ($stmt->rowCount() > 0) {
 
-    session_start();
-    $_SESSION['error_message'] = "Username already exists!";
+
     // echo "Username already exists!";
-    $error_message = "Username already exists!";
-    header('Location: register.php');
+    echo "<div class='alert alert-danger'>Error: Username already exists!</div>";
+    // header('Location: register.php');
     exit();
 }
 

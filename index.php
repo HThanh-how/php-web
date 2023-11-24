@@ -47,6 +47,9 @@ if (empty($_GET['page'])) {
     include 'register.php';
 } ?>
 <?php if ($_GET['page'] === 'products') {
+    include 'product_listing.php';
+} ?>
+<?php if ($_GET['page'] === 'add') {
     include 'products.php';
 } ?>
     <!-- Sử dụng Bootstrap JS (tùy chọn, chỉ cần nếu bạn sử dụng các thành phần JavaScript của Bootstrap) -->

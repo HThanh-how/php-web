@@ -40,7 +40,7 @@
                 }
 
                 $username = isset($_POST['username']);
-                $password = password_hash(isset($_POST['username']), PASSWORD_DEFAULT); // Hash the password
+                $password = password_hash(isset($_POST['password']), PASSWORD_DEFAULT); // Hash the password
 
                 $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
 

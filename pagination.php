@@ -20,6 +20,24 @@ if (!empty($_GET['search'])) {
     $filteredData = $data;
 }
 
+// Get the number of items per page from the user input or use a default value
+$itemsPerPage = isset($_GET['itemsPerPage']) ? $_GET['itemsPerPage'] : 4;
+
+// Calculate the total number of pages
+$totalPages = ceil(count($filteredData) / $itemsPerPage);
+
+// Get the current page number from the URL or use a default value
+$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+// Validate the current page number
+if ($currentPage < 1 || $currentPage > $totalPages) {
+    $currentPage = 1;
+}
+
+// Fetch the items for the current page
+$offset = ($currentPage - 1) * $itemsPerPage;
+$items = array_slice($filteredData, $offset, $itemsPerPage);
+
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +58,28 @@ if (!empty($_GET['search'])) {
 
         .no-product-found {
             display: none;
+        }
+
+        .pagination {
+            margin-top: 30px;
+        }
+
+        .pagination li {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .pagination li a {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+
+        .pagination li.active a {
+            background-color: gray;
+            color: white;
         }
     </style>
 </head>
@@ -62,11 +102,9 @@ if (!empty($_GET['search'])) {
 
         <input type="text" id="search-bar" placeholder="Tìm kiếm sản phẩm">
 
-
         <div class="row">
 
-
-            <?php foreach ($filteredData as $product) : ?>
+            <?php foreach ($items as $product) : ?>
                 <div class="col-md-3 product">
                     <div class="card">
                         <img src="<?php echo $product['image']; ?>" class="card-img-top product-image" alt="Product image">
@@ -82,8 +120,17 @@ if (!empty($_GET['search'])) {
                 <h3>No Product Found</h3>
             </div>
 
-
         </div>
+
+        <ul class="pagination">
+            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                <li class="<?php echo $i == $currentPage ? 'active' : ''; ?>">
+                    <a href="?page=<?php echo $i; ?>&itemsPerPage=<?php echo $itemsPerPage; ?>&search=<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                        <?php echo $i; ?>
+                    </a>
+                </li>
+            <?php endfor; ?>
+        </ul>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
