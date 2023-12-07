@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="index.php">Home</a>
     <a class="nav-link" href="index.php?page=products">Products</a>
+    <a class="nav-link" href="index.php?page=add-product">Add Products</a>
+    <a class="nav-link" href="index.php?page=get-file">Get file (3.1)</a>
+    <a class="nav-link" href="index.php?page=pagination">Pagination-4.1</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

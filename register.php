@@ -23,6 +23,7 @@
             border-radius: 5px;
             background-color: #ffffff;
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            margin-bottom: 100px;
         }
     </style>
 </head>
@@ -33,7 +34,7 @@
 
     <div class="login-container">
         <h2 class="text-center m-4">Register</h2>
-        <form action="registerProcessing.php" method="POST" onsubmit="return validateForm()">
+        <form action="" method="POST" onsubmit="return validateForm()">
             <div class="form-group m-4">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control" name="username" id="username" placeholder="Your username" required>
@@ -81,7 +82,42 @@
         return true;
     }
     </script>
-    
+     <?php
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Database connection settings
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+
+    $conn = new mysqli($servername, $username, $password, "OnlineStore");
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+
+    if ($conn->query($sql) === TRUE) {
+
+        echo "<div class='alert alert-success'>Registration successful. Please Login again</div>";
+    } else {
+
+        echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div><script>
+        document.getElementById('username').value = '$username';
+        document.getElementById('password').value = '$password'; document.getElementById('confirm_password').value = '$confirm_password';</script>";
+    }
+
+    $conn->close();
+}
+
+?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
