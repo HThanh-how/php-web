@@ -102,6 +102,34 @@ $items = array_slice($filteredData, $offset, $itemsPerPage);
 
         <input type="text" id="search-bar" placeholder="Tìm kiếm sản phẩm">
 
+        <!-- Add the select element here -->
+        <select id="item-per-page-select">
+            <option value="4">4</option>
+            <option value="8">8</option>
+            <option value="12">12</option>
+        </select>
+
+        <script>
+            // Lấy giá trị itemPerPage từ query string
+            var urlParams = new URLSearchParams(window.location.search);
+            var defaultItemPerPage = urlParams.get('itemsPerPage');
+
+            // Thiết lập giá trị mặc định cho select box
+            document.getElementById('item-per-page-select').value = defaultItemPerPage;
+
+            // Xử lý sự kiện khi người dùng chọn giá trị khác
+            document.getElementById('item-per-page-select').addEventListener('change', function() {
+                var selectedValue = this.value;
+
+                // Cập nhật giá trị itemPerPage trong URL
+                urlParams.set('itemsPerPage', selectedValue);
+
+                // Thiết lập lại URL trang với giá trị mới
+                window.location.href = window.location.pathname + '?' + urlParams.toString();
+            });
+        </script>
+
+
         <div class="row">
 
             <?php foreach ($items as $product) : ?>
