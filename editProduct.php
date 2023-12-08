@@ -33,10 +33,10 @@
                 // Handle product editing
                 $productName = $_POST["product_name"];
                 $price = $_POST["price"];
-                $quantity = $_POST["quantity"];
+                $quantity = mysqli_real_escape_string($conn, $_POST["quantity"]);
                 $rate = $_POST["rate"];
-                $description = $_POST["description"];
-                $img = $_POST["img"];
+                $description = mysqli_real_escape_string($conn, $_POST["description"]);
+                $img = mysqli_real_escape_string($conn, $_POST["img"]);
 
                 $sql = "UPDATE products SET productName='$productName', price=$price, quantity=$quantity, rate=$rate, dct='$description', img='$img' WHERE productID=$productId";
 
@@ -122,11 +122,11 @@
 
 
 
-            <button type="submit" class="btn btn-primary">Edit Product</button>
+            <button type="submit" class="btn btn-primary">Update Product</button>
         </form>
 
         <!-- Form để xoá sản phẩm -->
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=$productId"); ?>">
+        <form method="post" action="">
             <input type="hidden" name="action" value="delete">
             <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
 

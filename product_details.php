@@ -68,7 +68,7 @@
                     <p class="card-text">Quantity: ${product.quantity}</p>
                     <p class="card-text">Rating: ${product.rate}</p>
                     <p class="card-text">Description: ${product.dct}</p>
-                    
+                    <button class="btn btn btn-primary" onclick="location.href='http://localhost/lab2/index.php?page=edit-product&id=${product.productID}'">Edit</button>
                 `;
             }
 
