@@ -1,7 +1,7 @@
 <?php
 
 // Fetch data from the API
-$response = file_get_contents('https://fakestoreapi.com/products');
+$response = file_get_contents('http://localhost/lab2/getAll.php');
 
 // Convert the JSON response to an associative array
 $data = json_decode($response, true);
@@ -136,10 +136,10 @@ $items = array_slice($filteredData, $offset, $itemsPerPage);
             <?php foreach ($items as $product) : ?>
                 <div class="col-md-3 product">
                     <div class="card">
-                        <img src="<?php echo $product['image']; ?>" class="card-img-top product-image" alt="Product image">
+                        <img src="<?php echo $product['img']; ?>" class="card-img-top product-image" alt="Product image">
                         <div class="card-body">
                             <p class="card-text" style="text-align: right;"> $<?php echo $product['price']; ?></p>
-                            <h5 class="card-title" style="height: 5vw;"><?php echo $product['title']; ?></h5>
+                            <h5 class="card-title" style="height: 5vw;"><?php echo $product['productName']; ?></h5>
                         </div>
                     </div>
                 </div>

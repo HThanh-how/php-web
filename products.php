@@ -58,8 +58,12 @@ if ($conn->connect_error) {
 $sql = "CREATE TABLE products (
     productID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     productName VARCHAR(30) NOT NULL,
-    price DECIMAL(10,2) NOT NULL
-
+    price DECIMAL(10,2) NOT NULL,
+    img VARCHAR(600),
+    dct VARCHAR(600),  
+    category VARCHAR(60),
+    rate DECIMAL(10,2),
+    quantity DECIMAL(10,2) NOT NULL,
     
 )";
 

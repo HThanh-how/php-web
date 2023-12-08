@@ -84,7 +84,38 @@
     </script>
      <?php
 
-// Check if form is submitted
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+ 
+//     $servername = "localhost";
+//     $username = "root";
+//     $password = "";
+
+//     $conn = new mysqli($servername, $username, $password, "OnlineStore");
+
+//     if ($conn->connect_error) {
+//         die("Connection failed: " . $conn->connect_error);
+//     }
+
+//     $username = $_POST['username'];
+//     $password = $_POST['password'];
+//     $confirm_password = $_POST['confirm_password'];
+
+//     $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+
+//     if ($conn->query($sql) === TRUE) {
+
+//         echo "<div class='alert alert-success'>Registration successful. Please Login again</div>";
+//     } else {
+
+//         echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div><script>
+//         document.getElementById('username').value = '$username';
+//         document.getElementById('password').value = '$password'; document.getElementById('confirm_password').value = '$confirm_password';</script>";
+//     }
+
+//     $conn->close();
+// }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Database connection settings
@@ -98,24 +129,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Check if username exists
+
+
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
+
+    $checkUsernameQuery = "SELECT * FROM users WHERE username = '$username'";
+    $result = $conn->query($checkUsernameQuery);
+
+    if ($result->num_rows > 0) {
+        echo "<div class='alert alert-danger'>Error: Username already exists.</div><script>
+        document.getElementById('username').value = '$username';
+        document.getElementById('password').value = '$password';
+        document.getElementById('confirm_password').value = '$confirm_password';</script>";
+        $conn->close();
+        exit; // Stop the execution of further code
+    }
+
     $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
 
     if ($conn->query($sql) === TRUE) {
-
-        echo "<div class='alert alert-success'>Registration successful. Please Login again</div>";
+        echo "<div class='alert alert-success'>Registration successful. Please login again.</div>";
     } else {
-
         echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div><script>
         document.getElementById('username').value = '$username';
-        document.getElementById('password').value = '$password'; document.getElementById('confirm_password').value = '$confirm_password';</script>";
+        document.getElementById('password').value = '$password';
+        document.getElementById('confirm_password').value = '$confirm_password';</script>";
     }
 
     $conn->close();
 }
+
+
+
 
 ?>
 

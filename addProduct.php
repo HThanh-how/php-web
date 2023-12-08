@@ -17,46 +17,81 @@
     <div class="login-container">
 
         <h2>Add Product</h2>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form method="post" action="">
             <div class="form-group">
-                <label for="productName">Product Name:</label>
+                <label for="productName">Product Name</label>
                 <input type="text" class="form-control" id="productName" name="productName" required>
             </div>
 
             <div class="form-group">
-                <label for="price">Price:</label>
+                <label for="price">Price</label>
                 <input type="number" step="1" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Image Link</label>
+                <input type="link" step="1" class="form-control" id="image" name="image">
+            </div>
+            <div class="form-group">
+                <label for="price">Quantity</label>
+                <input type="number" step="1" class="form-control" id="quantity" name="quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Descrpiton</label>
+                <input type="text" step="1" class="form-control" id="description" name="description">
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="men's clothing">Men's Clothing</option>
+                    <option value="women's clothing">Women's Clothing</option>
+                    <option value="jewelry">Jewelry</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="electronics">Orders</option>
+                </select>
             </div>
 
 
-
             <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "OnlineStore";
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "OnlineStore";
 
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $productName = $_POST['productName'];
-                $price = $_POST['price'];
-
-                $sql = "INSERT INTO products (productName, price) VALUES ('$productName', '$price')";
-
-                if ($conn->query($sql) === TRUE) {
-
-                    echo "<div class='alert alert-success'>Add Product successful</div>";
-                } else {
-
-                    echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div>";
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
                 }
-            }
 
-            $conn->close();
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $productName = $_POST['productName'];
+                    $price = $_POST['price'];
+                    $quantity = $_POST['quantity'];
+                    $img = $_POST['image'];
+                    $dct = $_POST['description'];
+                    $category = $_POST['category'];
+
+                    $sql = "INSERT INTO products (productName, price, img, dct, quantity, category) VALUES ('$productName', '$price', '$img', '$dct', '$quantity','$category')";
+
+                    if ($conn->query($sql) === TRUE) {
+
+                        echo "<div class='alert alert-success'>Add Product successfully</div>";
+                    } else {
+
+                        echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div>
+                        <script>
+                            document.getElementById('price').value = '$price';
+                            document.getElementById('quantity').value = '$quantity'; 
+                            document.getElementById('image').value = '$img';
+                            document.getElementById('description').value = '$dct'; 
+                            document.getElementById('category').value = '$category'; 
+                        </script>";
+                    }
+                }
+
+                $conn->close();
+            }
             ?>
             <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
