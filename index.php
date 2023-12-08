@@ -75,6 +75,10 @@ if (empty($_GET['page'])) {
 <?php if ($_GET['page'] === 'edit-product') {
     include 'editProduct.php';
 } ?>
+
+<?php if ($_GET['page'] === 'map') {
+    include 'map.php';
+} ?>
 <?php include 'footer.php'; ?>
     <!-- Sử dụng Bootstrap JS (tùy chọn, chỉ cần nếu bạn sử dụng các thành phần JavaScript của Bootstrap) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
