@@ -61,7 +61,7 @@ function displayProducts($products) {
 </head>
 
 <body>
-
+<title>LazyLoad</title>
     <div class="container">
         <h1>Product List</h1>
 

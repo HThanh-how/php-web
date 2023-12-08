@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
+    <title>Register</title>
     <link rel="stylesheet" href="styles.css">
 
     <!-- Sử dụng Bootstrap CSS -->
@@ -36,7 +36,17 @@
         <h2 class="text-center m-4">Register</h2>
         <form action="" method="POST" onsubmit="return validateForm()">
             <div class="form-group m-4">
-                <label for="username">Username:</label>
+                <label for="username">Your Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
+                <!-- <span id="username_error" style="color: red;"></span> -->
+            </div>
+            <div class="form-group m-4">
+                <label for="username">Email</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your email" required>
+                <span id="email_error" style="color: red;"></span>
+            </div>
+            <div class="form-group m-4">
+                <label for="username">Username</label>
                 <input type="text" class="form-control" name="username" id="username" placeholder="Your username" required>
                 <span id="username_error" style="color: red;"></span>
             </div>
@@ -53,121 +63,131 @@
             <button onclick="window.location.href='index.php?page=login'" class="btn btn-secondary btn-block m-4">Sign in</button>
         </form>
     </div>
-    
+
     <script>
-    function validateForm() {
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        var confirm_password = document.getElementById("confirm_password").value;
-    
-        var specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\|,.<>\/?]+/;
-    
-        if (username.length < 6 || username.toUpperCase() === username || specialChars.test(username)) {
-            document.getElementById("username_error").textContent = "Username must be at least 6 characters long, lowercase, and should not contain special characters.";
-            return false;
-        } else {
-            document.getElementById("username_error").textContent = "";
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var email = document.getElementById("email").value;
+            var confirm_password = document.getElementById("confirm_password").value;
+
+            var specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\|,.<>\/?]+/;
+
+            if (username.length < 6 || username.toUpperCase() === username || specialChars.test(username)) {
+                document.getElementById("username_error").textContent = "Username must be at least 6 characters long, lowercase, and should not contain special characters.";
+                return false;
+            } else {
+                document.getElementById("username_error").textContent = "";
+            }
+            if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+                document.getElementById("email_error").textContent = "Invalid email address.";
+                return false;
+            } else {
+                document.getElementById("email_error").textContent = "";
+            }
+
+            if (password.length < 6) {
+                document.getElementById("password_error").textContent = "Password must be at least 6 characters long.";
+                return false;
+            }
+
+            if (password != confirm_password) {
+                document.getElementById("password_error").textContent = "Passwords do not match.";
+                return false;
+            }
+
+            return true;
         }
-    
-        if (password.length < 6) {
-            document.getElementById("password_error").textContent = "Password must be at least 6 characters long.";
-            return false;
-        }
-    
-        if (password != confirm_password) {
-            document.getElementById("password_error").textContent = "Passwords do not match.";
-            return false;
-        }
-    
-        return true;
-    }
     </script>
-     <?php
+    <?php
 
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
- 
-//     $servername = "localhost";
-//     $username = "root";
-//     $password = "";
-
-//     $conn = new mysqli($servername, $username, $password, "OnlineStore");
-
-//     if ($conn->connect_error) {
-//         die("Connection failed: " . $conn->connect_error);
-//     }
-
-//     $username = $_POST['username'];
-//     $password = $_POST['password'];
-//     $confirm_password = $_POST['confirm_password'];
-
-//     $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-
-//     if ($conn->query($sql) === TRUE) {
-
-//         echo "<div class='alert alert-success'>Registration successful. Please Login again</div>";
-//     } else {
-
-//         echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div><script>
-//         document.getElementById('username').value = '$username';
-//         document.getElementById('password').value = '$password'; document.getElementById('confirm_password').value = '$confirm_password';</script>";
-//     }
-
-//     $conn->close();
-// }
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // Database connection settings
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-
-    $conn = new mysqli($servername, $username, $password, "OnlineStore");
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Check if username exists
+    // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
-    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+    //     $servername = "localhost";
+    //     $username = "root";
+    //     $password = "";
+
+    //     $conn = new mysqli($servername, $username, $password, "OnlineStore");
+
+    //     if ($conn->connect_error) {
+    //         die("Connection failed: " . $conn->connect_error);
+    //     }
+
+    //     $username = $_POST['username'];
+    //     $password = $_POST['password'];
+    //     $confirm_password = $_POST['confirm_password'];
+
+    //     $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+
+    //     if ($conn->query($sql) === TRUE) {
+
+    //         echo "<div class='alert alert-success'>Registration successful. Please Login again</div>";
+    //     } else {
+
+    //         echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div><script>
+    //         document.getElementById('username').value = '$username';
+    //         document.getElementById('password').value = '$password'; document.getElementById('confirm_password').value = '$confirm_password';</script>";
+    //     }
+
+    //     $conn->close();
+    // }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        // Database connection settings
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+
+        $conn = new mysqli($servername, $username, $password, "OnlineStore");
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Check if username exists
+
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+        $hashPassword = password_hash($password, PASSWORD_DEFAULT);
 
 
-    $checkUsernameQuery = "SELECT * FROM users WHERE username = '$username'";
-    $result = $conn->query($checkUsernameQuery);
+        $checkUsernameQuery = "SELECT * FROM users WHERE username = '$username'";
+        $result = $conn->query($checkUsernameQuery);
 
-    if ($result->num_rows > 0) {
-        echo "<div class='alert alert-danger'>Error: Username already exists.</div><script>
+        if ($result->num_rows > 0) {
+            echo "<div class='alert alert-danger'>Error: Username already exists.</div><script>
         document.getElementById('username').value = '$username';
         document.getElementById('password').value = '$password';
         document.getElementById('confirm_password').value = '$confirm_password';</script>";
+            $conn->close();
+            exit; // Stop the execution of further code
+        }
+
+        $sql = "INSERT INTO users (username, password, email, name) VALUES ('$username', '$hashPassword', '$email', '$name');";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<div class='alert alert-success'>Registration successful. Please login again.</div>";
+        } else {
+            echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div><script>
+        document.getElementById('username').value = '$username';
+        document.getElementById('password').value = '$password';
+        document.getElementById('email').value = '$email';
+        document.getElementById('name').value = '$name';
+        document.getElementById('confirm_password').value = '$confirm_password';</script>";
+        }
+
         $conn->close();
-        exit; // Stop the execution of further code
     }
 
-    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashPassword')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<div class='alert alert-success'>Registration successful. Please login again.</div>";
-    } else {
-        echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div><script>
-        document.getElementById('username').value = '$username';
-        document.getElementById('password').value = '$password';
-        document.getElementById('confirm_password').value = '$confirm_password';</script>";
-    }
-
-    $conn->close();
-}
 
 
 
-
-?>
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -85,7 +85,7 @@ $items = array_slice($filteredData, $offset, $itemsPerPage);
 </head>
 
 <body>
-
+        <title>Pagination</title>
     <div class="container">
         <h1>Product List</h1>
 

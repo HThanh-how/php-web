@@ -45,7 +45,7 @@ body, html {
 </style>
 </head>
 <body>
-
+<title>Home page</title>
 <div class="hero-image">
   <div class="hero-text">
     <h1 style="font-size:50px">I am Huy Thanh</h1>

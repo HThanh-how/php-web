@@ -45,7 +45,7 @@ if (!empty($_GET['search'])) {
 </head>
 
 <body>
-
+    <title>Products Collection</title>
     <div class="container">
         <h1>Product List</h1>
 
