@@ -36,9 +36,9 @@
                 $quantity = $_POST["quantity"];
                 $rate = $_POST["rate"];
                 $description = $_POST["description"];
-                $img = $_POST["img"]; // Added img field
+                $img = $_POST["img"];
 
-                $sql = "UPDATE products SET productName='$productName', price=$price, quantity=$quantity, rate=$rate, description='$description', img='$img' WHERE productID=$productId";
+                $sql = "UPDATE products SET productName='$productName', price=$price, quantity=$quantity, rate=$rate, dct='$description', img='$img' WHERE productID=$productId";
 
                 if ($conn->query($sql) === TRUE) {
                     echo '<div class="alert alert-success" role="alert">Product updated successfully</div>';
@@ -47,7 +47,7 @@
                 }
             } elseif ($action == "delete") {
                 // Handle product deletion
-                $sql = "DELETE FROM products WHERE id=$productId";
+                $sql = "DELETE FROM products WHERE productID=$productId";
 
                 if ($conn->query($sql) === TRUE) {
                     echo '<div class="alert alert-success" role="alert">Product deleted successfully</div>';
@@ -75,7 +75,7 @@
         }
         ?>
 
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=$productId"); ?>">
+        <form method="post" action="">
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
 
@@ -98,6 +98,17 @@
                 <label for="rate">Rating:</label>
                 <input type="number" step="0.1" class="form-control" name="rate" value="<?php echo $product["rate"]; ?>" required>
             </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="men's clothing">Men's Clothing</option>
+                    <option value="women's clothing">Women's Clothing</option>
+                    <option value="jewelry">Jewelry</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="electronics">Orders</option>
+                </select>
+            </div>
 
             <div class="form-group">
                 <label for="img">Image URL:</label>
@@ -106,11 +117,26 @@
 
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea class="form-control" name="description" rows="4" required><?php echo $product["description"]; ?></textarea>
+                <textarea class="form-control" name="description" rows="4" required><?php echo $product["dct"]; ?></textarea>
             </div>
+
+
 
             <button type="submit" class="btn btn-primary">Edit Product</button>
         </form>
 
+        <!-- Form để xoá sản phẩm -->
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=$productId"); ?>">
-            <input type="hidden" n
+            <input type="hidden" name="action" value="delete">
+            <input type="hidden" name="product_id" value="<?php echo $productId; ?>">
+
+            <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Are you sure you want to delete this product?')">Delete Product</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

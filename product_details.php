@@ -68,6 +68,7 @@
                     <p class="card-text">Quantity: ${product.quantity}</p>
                     <p class="card-text">Rating: ${product.rate}</p>
                     <p class="card-text">Description: ${product.dct}</p>
+                    
                 `;
             }
 

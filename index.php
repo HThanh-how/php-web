@@ -11,7 +11,7 @@ if (empty($_GET['page'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
+    <!-- <title>Đăng nhập</title> -->
     <link rel="stylesheet" href="styles.css">
 
     <!-- Sử dụng Bootstrap CSS -->
@@ -71,6 +71,9 @@ if (empty($_GET['page'])) {
 } ?>
 <?php if ($_GET['page'] === 'product-details') {
     include 'product_details.php';
+} ?>
+<?php if ($_GET['page'] === 'edit-product') {
+    include 'editProduct.php';
 } ?>
 <?php include 'footer.php'; ?>
     <!-- Sử dụng Bootstrap JS (tùy chọn, chỉ cần nếu bạn sử dụng các thành phần JavaScript của Bootstrap) -->
