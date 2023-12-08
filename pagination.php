@@ -134,14 +134,17 @@ $items = array_slice($filteredData, $offset, $itemsPerPage);
         <div class="row">
 
             <?php foreach ($items as $product) : ?>
-                <div class="col-md-3 product">
+                <div class="col-md-3 product" >
                     <div class="card">
-                        <img src="<?php echo $product['img']; ?>" class="card-img-top product-image" alt="Product image">
+                        <a href="/lab2/index.php?page=product-details&id=<?php echo $product['productID']; ?>">
+                            <img src="<?php echo $product['img']; ?>" class="card-img-top product-image" alt="Product image">
+                        </a>
                         <div class="card-body">
-                            <p class="card-text" style="text-align: right;"> $<?php echo $product['price']; ?></p>
+                            <p class="card-text" style="text-align: right;">$<?php echo $product['price']; ?></p>
                             <h5 class="card-title" style="height: 5vw;"><?php echo $product['productName']; ?></h5>
                         </div>
                     </div>
+                    
                 </div>
             <?php endforeach; ?>
 

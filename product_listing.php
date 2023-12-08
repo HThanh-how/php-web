@@ -1,7 +1,7 @@
 <?php
 
 // Fetch data from the API
-$response = file_get_contents('https://fakestoreapi.com/products');
+$response = file_get_contents('http://localhost/lab2/getAll.php');
 
 // Convert the JSON response to an associative array
 $data = json_decode($response, true);

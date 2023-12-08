@@ -23,14 +23,14 @@
             <?php
 
             // Fetch data from the API
-            $response = file_get_contents('https://fakestoreapi.com/products');
+            $response = file_get_contents('http://localhost/lab2/getAll.php');
 
             // Convert the JSON response to an associative array
             $data = json_decode($response, true);
 
             foreach ($data as $product) : ?>
                 <option value="<?php echo $product['id']; ?>">
-                    <?php echo $product['title']; ?> - $<?php echo $product['price']; ?>
+                    <?php echo $product['productName']; ?> - $<?php echo $product['price']; ?>
                 </option>
             <?php endforeach; ?>
 
@@ -40,7 +40,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <img id="selected-product-image" src="" class="card-img-top product-image" alt="Selected product image">
+                        <img id="selected-product-image" src="<?php echo $product['img']; ?>" class="card-img-top product-image" alt="Selected product image">
                         <h5 id="selected-product-title"></h5>
                         <p id="selected-product-price" style="text-align: right;"></p>
                     </div>

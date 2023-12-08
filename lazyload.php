@@ -1,7 +1,7 @@
 <?php
 
 // Fetch data from the API
-$response = file_get_contents('https://fakestoreapi.com/products');
+$response = file_get_contents('http://localhost/lab2/getAll.php');
 
 // Convert the JSON response to an associative array
 $data = json_decode($response, true);
@@ -12,7 +12,7 @@ $filteredData = [];
 if (!empty($_GET['search'])) {
     $searchQuery = $_GET['search'];
     foreach ($data as $product) {
-        if (strpos(strtolower($product['title']), strtolower($searchQuery)) !== false) {
+        if (strpos(strtolower($product['productName']), strtolower($searchQuery)) !== false) {
             $filteredData[] = $product;
         }
     }
@@ -25,10 +25,10 @@ function displayProducts($products) {
     foreach ($products as $product) {
         echo '<div class="col-md-3 product">';
         echo '<div class="card">';
-        echo '<img src="' . $product['image'] . '" class="card-img-top product-image" alt="Product image">';
+        echo '<img src="' . $product['img'] . '" class="card-img-top product-image" alt="Product image">';
         echo '<div class="card-body">';
         echo '<p class="card-text" style="text-align: right;"> $' . $product['price'] . '</p>';
-        echo '<h5 class="card-title" style="height: 5vw;">' . $product['title'] . '</h5>';
+        echo '<h5 class="card-title" style="height: 5vw;">' . $product['productName'] . '</h5>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
@@ -166,10 +166,10 @@ function displayProducts($products) {
                         productDiv.className = 'col-md-3 product';
                         productDiv.innerHTML = `
                             <div class="card">
-                                <img src="${product.image}" class="card-img-top product-image" alt="Product image">
+                                <img src="${product.img}" class="card-img-top product-image" alt="Product image">
                                 <div class="card-body">
                                     <p class="card-text" style="text-align: right;"> $${product.price}</p>
-                                    <h5 class="card-title" style="height: 5vw;">${product.title}</h5>
+                                    <h5 class="card-title" style="height: 5vw;">${product.productName}</h5>
                                 </div>
                             </div>
                         `;
