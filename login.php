@@ -66,12 +66,16 @@
                 document.getElementById("password_error").textContent = "Password must be at least 6 characters long.";
                 return false;
             }
-
+            // if (!validateInput(username, password)) {
+            //     tmpUsername = username;
+            //     tmpPassword = password;
+            // }
             return true;
         }
     </script>
     <?php
     // session_start();
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $servername = "localhost";
