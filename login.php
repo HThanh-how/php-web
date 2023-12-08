@@ -98,20 +98,16 @@
 
         $username = $_POST['username'];
         $password = $_POST['password'];
-
-
-
-        $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
+        
+        $sql = "SELECT * FROM users WHERE username = :username";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($user) {
+        
+        if ($user && password_verify($password, $user['password'])) {
             $_SESSION['logged_in'] = true;
             echo "<script>window.location.href='index.php';</script>";
-
             exit();
         } else {
             echo "<div class='alert alert-danger'>Incorrect username or password</div><script>

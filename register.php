@@ -135,6 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
+    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
 
 
     $checkUsernameQuery = "SELECT * FROM users WHERE username = '$username'";
@@ -149,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit; // Stop the execution of further code
     }
 
-    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashPassword')";
 
     if ($conn->query($sql) === TRUE) {
         echo "<div class='alert alert-success'>Registration successful. Please login again.</div>";
