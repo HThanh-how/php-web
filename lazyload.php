@@ -25,11 +25,12 @@ function displayProducts($products) {
     foreach ($products as $product) {
         echo '<div class="col-md-3 product">';
         echo '<div class="card">';
+        echo '<a href="/lab2/index.php?page=product-details&id=' . $product['productID'] . '">';
         echo '<img src="' . $product['img'] . '" class="card-img-top product-image" alt="Product image">';
         echo '<div class="card-body">';
         echo '<p class="card-text" style="text-align: right;"> $' . $product['price'] . '</p>';
         echo '<h5 class="card-title" style="height: 5vw;">' . $product['productName'] . '</h5>';
-        echo '</div>';
+        echo '</div></a>';
         echo '</div>';
         echo '</div>';
     }
@@ -166,11 +167,13 @@ function displayProducts($products) {
                         productDiv.className = 'col-md-3 product';
                         productDiv.innerHTML = `
                             <div class="card">
+                            <a href="/lab2/index.php?page=product-details&id=${product.productID}">
                                 <img src="${product.img}" class="card-img-top product-image" alt="Product image">
                                 <div class="card-body">
                                     <p class="card-text" style="text-align: right;"> $${product.price}</p>
                                     <h5 class="card-title" style="height: 5vw;">${product.productName}</h5>
                                 </div>
+                                </a>
                             </div>
                         `;
                         document.getElementById('product-container').insertBefore(productDiv, target);
