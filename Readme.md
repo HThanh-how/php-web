@@ -93,3 +93,5 @@ This project is licensed under the [MIT License](LICENSE.md) - see the [LICENSE.
 - Special thanks to the contributors and the web programming community.
 
 Feel free to explore the labs and enhance your skills in web programming!
+
+Copyright (c) [2023] [`Huy Thanh`](https://github.com/HThanh-how)
