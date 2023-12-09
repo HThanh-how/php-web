@@ -1,4 +1,4 @@
-# HUY THANH PROJECT AHD WEB PROGRAMING
+# README
 
 ## Introduction
 
@@ -14,44 +14,64 @@ Follow these instructions to get a copy of the project up and running on your lo
 2. **PHP**: Make sure PHP is installed. You can download it from [php.net](https://www.php.net/downloads.php).
 3. **MySQL Database**: Set up a MySQL database and note down the credentials.
 
+### Database Configuration
+
+Database configuration is stored in the `database_config.php` file. Update the following variables with your MySQL credentials:
+
+```php
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "OnlineStore";
+```
+
 ### Installation
 
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   https://github.com/HThanh-how/php-web
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd your-repo
+   cd php-web
    ```
 
 3. Configure the database connection by editing the `config.php` file and entering your MySQL credentials:
 
    ```php
    <?php
-   define('DB_HOST', 'your-host');
-   define('DB_USER', 'your-username');
-   define('DB_PASSWORD', 'your-password');
-   define('DB_NAME', 'your-database');
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "OnlineStore";
    ```
 
-4. Import the MySQL database schema by running the SQL script provided in the `database` folder:
+4. Run `Xampp` and configure the database connection with `MySQL` credentials by starting the the `config.php` file
+
+
+5. Import the MySQL database schema by running the SQL script provided in the `database` folder:
 
    ```bash
-   mysql -u your-username -p your-database < database/schema.sql
+   mysql -u root -p OnlineStore < database/schema.sql
    ```
 
-5. Start your web server and open the project in a web browser.
+6. Start your web server and open the project in a web browser.
 
 ## Features
 
 - **Lab Modules**: The web application is organized into lab modules, each covering specific topics in web programming.
 - **Interactive Exercises**: Engage in hands-on learning through interactive exercises within each lab.
 - **Database Integration**: Explore examples demonstrating the integration of PHP with a MySQL database.
-- **Responsive Design**: Bootstrap ensures a responsive and visually appealing user interface across various devices.
+- **User Authentication**: The website supports user authentication with features such as login, logout, and register functionalities.
+- **Product Management**: Implement CRUD operations for managing products.
+- **Ajax Search and Pagination**: Utilize Ajax for seamless product searching and pagination for improved user experience.
+- **Lazy Loading**: Implement lazy loading to enhance the performance of the website.
+- **Google Map Integration**: The website includes a Google Map for users to search locations.
+- **Dropdown List for Locations**: Support dropdown lists for selecting provinces and districts in Vietnam, redirecting to separate pages for detailed information.
 
 ## Contributing
 
