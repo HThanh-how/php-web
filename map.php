@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
+<title>Google Maps</title>
 
-<h1>My First Google Map</h1>
 <h1>Tìm kiếm vị trí bằng Google Maps</h1>
   <form action="" method="post">
     <input type="text" name="address" placeholder="Nhập địa chỉ">
@@ -14,7 +14,7 @@
 function myMap() {
 var mapProp= {
   center:new google.maps.LatLng(10.8230989,106.6296638),
-  zoom:5,
+  zoom:10,
 };
 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
@@ -43,9 +43,14 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
         function myMap() {
         var mapProp= {
           center:new google.maps.LatLng($lat,$lng),
-          zoom:5,
+          zoom:20,
         };
         var map = new google.maps.Map(document.getElementById(\"googleMap\"),mapProp);
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng($lat, $lng),
+          map: map,
+          title: \"Test\",
+        });
         }
         </script>";
       } else {
