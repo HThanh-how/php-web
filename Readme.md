@@ -81,7 +81,7 @@ If you'd like to contribute to this project, please follow these guidelines:
 2. Create a new branch for your feature or bug fix.
 3. Make your changes and submit a pull request.
 
-Special thanks to [Trong Nghia Nguyen](https://github.com/ngaymai) for creating this project with a wholehearted commitment to excellence.
+Special thanks to [`Trong Nghia Nguyen`](https://github.com/ngaymai) for supporting to create this project with a wholehearted commitment to excellence.
 
 ## License
 
