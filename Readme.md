@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains a web application built using PHP, MySQL, and Bootstrap. The purpose of this project is to serve as a comprehensive collection of labs for the Web Programming course. The integration of PHP for server-side scripting, MySQL for database management, and Bootstrap for front-end styling ensures a robust and user-friendly web experience.
+This repository contains a web application built using PHP, MySQL, and Bootstrap, created with passion and dedication by `Huy Thanh`. The purpose of this project is to serve as a comprehensive collection of labs for the Web Programming course. The integration of PHP for server-side scripting, MySQL for database management, and Bootstrap for front-end styling ensures a robust and user-friendly web experience.
 
 ## Getting Started
 
@@ -28,7 +28,7 @@ $dbname = "OnlineStore";
 
 ### Installation
 
-1. Clone the repository to your local machine:
+1. Clone the repository to your local machine and save this to `\xampp\htdocs\`.
 
    ```bash
    https://github.com/HThanh-how/php-web
@@ -80,6 +80,8 @@ If you'd like to contribute to this project, please follow these guidelines:
 1. Fork the repository on GitHub.
 2. Create a new branch for your feature or bug fix.
 3. Make your changes and submit a pull request.
+
+Special thanks to [Trong Nghia Nguyen](https://github.com/ngaymai) for creating this project with a wholehearted commitment to excellence.
 
 ## License
 
