@@ -50,12 +50,12 @@ $dbname = "OnlineStore";
         $database = "OnlineStore";
    ```
 
-4. Run `Xampp` and configure the database connection with `MySQL` credentials by starting the `config.php` file.
+4. Run `Xampp` and configure the database connection with `MySQL` credentials. by starting the `config.php` file.
 
-5. Import the MySQL database schema by running the SQL script provided in the `database` folder:
+5. Config the MySQL database schema by running the the `config.php` file on the address bar of the browser.
 
    ```bash
-   mysql -u root -p OnlineStore < database/schema.sql
+localhost/php-web/config.php
    ```
 
 6. Start your web server and open the project in a web browser.
