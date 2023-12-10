@@ -47,7 +47,7 @@
                     <option value="women's clothing">Women's Clothing</option>
                     <option value="jewelry">Jewelry</option>
                     <option value="electronics">Electronics</option>
-                    <option value="electronics">Orders</option>
+                    <option value="electronics">Others</option>
                 </select>
             </div>
 
@@ -65,12 +65,12 @@
                 }
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $productName = $_POST['productName'];
+                    $productName = addslashes($_POST['productName']);
                     $price = $_POST['price'];
                     $quantity = $_POST['quantity'];
                     $img = $_POST['image'];
-                    $dct = $_POST['description'];
-                    $category = $_POST['category'];
+                    $dct = addslashes($_POST['description']);
+                    $category = addslashes($_POST['category']);
 
                     $sql = "INSERT INTO products (productName, price, img, dct, quantity, category) VALUES ('$productName', '$price', '$img', '$dct', '$quantity','$category')";
 

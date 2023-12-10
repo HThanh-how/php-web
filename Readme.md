@@ -50,8 +50,7 @@ $dbname = "OnlineStore";
         $database = "OnlineStore";
    ```
 
-4. Run `Xampp` and configure the database connection with `MySQL` credentials by starting the the `config.php` file
-
+4. Run `Xampp` and configure the database connection with `MySQL` credentials by starting the `config.php` file.
 
 5. Import the MySQL database schema by running the SQL script provided in the `database` folder:
 
@@ -60,6 +59,20 @@ $dbname = "OnlineStore";
    ```
 
 6. Start your web server and open the project in a web browser.
+
+## Additional Note
+
+For your convenience, a pre-populated MySQL database is included in the repository. You can import it into your MySQL server using the following command:
+
+```bash
+mysql -u your_username -p your_database_name < onlinestore.sql
+```
+
+Replace `your_username` and `your_database_name` with your MySQL username and the desired database name, respectively.
+
+This SQL script contains sample data, ensuring you have a functional database to work with as you explore the features and modules of this web application.
+
+Enjoy exploring and learning with the web programming labs!
 
 ## Features
 
@@ -93,5 +106,3 @@ This project is licensed under the [MIT License](LICENSE.md) - see the [LICENSE.
 - Special thanks to the contributors and the web programming community.
 
 Feel free to explore the labs and enhance your skills in web programming!
-
-Copyright (c) [2023] [`Huy Thanh`](https://github.com/HThanh-how)

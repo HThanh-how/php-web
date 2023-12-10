@@ -31,12 +31,13 @@
 
             if ($action == "edit") {
                 // Handle product editing
-                $productName = $_POST["product_name"];
+                $productName = addslashes($_POST["product_name"]);
                 $price = $_POST["price"];
-                $quantity = mysqli_real_escape_string($conn, $_POST["quantity"]);
+                $quantity = addslashes($_POST["quantity"]);
                 $rate = $_POST["rate"];
-                $description = mysqli_real_escape_string($conn, $_POST["description"]);
-                $img = mysqli_real_escape_string($conn, $_POST["img"]);
+                $description = addslashes($_POST["description"]);
+                $img = addslashes($_POST["img"]);
+                $category = addslashes($_POST["category"]);
 
                 $sql = "UPDATE products SET productName='$productName', price=$price, quantity=$quantity, rate=$rate, dct='$description', img='$img' WHERE productID=$productId";
 
@@ -106,7 +107,7 @@
                     <option value="women's clothing">Women's Clothing</option>
                     <option value="jewelry">Jewelry</option>
                     <option value="electronics">Electronics</option>
-                    <option value="electronics">Orders</option>
+                    <option value="electronics">Others</option>
                 </select>
             </div>
 
